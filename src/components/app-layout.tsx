@@ -38,6 +38,10 @@ const navItems = [
 
 export function AppLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  
+  if (pathname === '/') {
+    return <>{children}</>;
+  }
 
   return (
     <SidebarProvider>
@@ -101,10 +105,8 @@ export function AppLayout({ children }: { children: ReactNode }) {
       <div className="flex flex-col flex-1 w-full min-w-0">
         <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4 md:hidden">
           <SidebarTrigger>
-            <Button size="icon" variant="outline">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Toggle Menu</span>
-            </Button>
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle Menu</span>
           </SidebarTrigger>
           <Link href="/" className="flex items-center gap-2">
             <Logo className="w-6 h-6 text-primary" />
