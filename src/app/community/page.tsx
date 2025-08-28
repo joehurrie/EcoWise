@@ -1,6 +1,5 @@
 import { WelcomeBanner } from '@/components/community/welcome-banner';
 import { CommunityFeed } from '@/components/community/community-feed';
-import { FeaturedReviews } from '@/components/community/featured-reviews';
 import { SubmitProduct } from '@/components/community/submit-product';
 import { QuickPoll } from '@/components/community/quick-poll';
 import { UpcomingEvents } from '@/components/community/upcoming-events';
@@ -15,7 +14,6 @@ export default function CommunityPage() {
         <div className="w-full lg:w-2/3">
           <div className="space-y-8">
             <CommunityFeed />
-            <FeaturedReviews />
             <SubmitProduct />
           </div>
         </div>
