@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -62,8 +63,8 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <SidebarProvider>
-      <MobileSidebarCloser />
       <Sidebar>
+        <MobileSidebarCloser />
         <SidebarHeader className="p-4">
           <Link href="/" className="flex items-center gap-2">
             <EcoWiseLogo className="w-8 h-8 text-accent" />
