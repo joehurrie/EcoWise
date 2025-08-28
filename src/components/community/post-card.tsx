@@ -81,6 +81,7 @@ export function PostCard({
                 src={src}
                 alt="Post image"
                 fill
+                sizes="(max-width: 768px) 33vw, 100vw"
                 className="object-cover"
               />
             </div>
