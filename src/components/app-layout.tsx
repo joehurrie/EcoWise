@@ -17,6 +17,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import {
+  Home,
   LayoutGrid,
   ScanLine,
   BarChart2,
@@ -32,6 +33,7 @@ import { Separator } from './ui/separator';
 import { useEffect } from 'react';
 
 const navItems = [
+  { href: '/', label: 'Home', icon: Home },
   { href: '/products', label: 'Products', icon: Package },
   { href: '/scan', label: 'Scan Product', icon: ScanLine },
   { href: '/dashboard', label: 'Dashboard', icon: BarChart2 },
@@ -54,8 +56,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   const isHomePage = pathname === '/';
+  const isSpecialPage = ['/login', '/signup'].includes(pathname);
 
-  if (isHomePage) {
+  if (isHomePage || isSpecialPage) {
     return <>{children}</>;
   }
 
@@ -78,7 +81,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                 <Link href={item.href}>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname.startsWith(item.href)}
+                    isActive={
+                      item.href === '/'
+                        ? pathname === item.href
+                        : pathname.startsWith(item.href)
+                    }
                     tooltip={item.label}
                   >
                     <span>
