@@ -19,7 +19,7 @@ export function useIsMobile() {
 
     // Remove event listener on cleanup
     return () => {
-      window.removeEventListener("resize", checkIs-mobile)
+      window.removeEventListener("resize", checkIsMobile)
     }
   }, [])
 
