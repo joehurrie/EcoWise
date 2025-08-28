@@ -14,6 +14,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarTrigger,
+  useSidebar,
 } from '@/components/ui/sidebar';
 import {
   LayoutGrid,
@@ -28,6 +29,7 @@ import { EcoWiseLogo } from './icons';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Separator } from './ui/separator';
+import { useEffect } from 'react';
 
 const navItems = [
   { href: '/', label: 'Home', icon: LayoutGrid },
@@ -37,6 +39,17 @@ const navItems = [
   { href: '/community', label: 'Community', icon: Users },
   { href: '/partner', label: 'For Partners', icon: Briefcase },
 ];
+
+function MobileSidebarCloser() {
+  const pathname = usePathname();
+  const { setOpenMobile } = useSidebar();
+
+  useEffect(() => {
+    setOpenMobile(false);
+  }, [pathname, setOpenMobile]);
+
+  return null;
+}
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -56,7 +69,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <Link href={item.href} passHref legacyBehavior>
+                <Link href={item.href} passHref>
                   <SidebarMenuButton
                     as="a"
                     isActive={pathname === item.href}
@@ -98,6 +111,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         </header>
         <div className="p-8">{children}</div>
       </SidebarInset>
+      <MobileSidebarCloser />
     </SidebarProvider>
   );
 }
