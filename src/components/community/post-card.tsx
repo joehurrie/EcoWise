@@ -1,3 +1,5 @@
+'use client';
+
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -46,16 +48,23 @@ export function PostCard({
               <div>
                 <p className="font-semibold text-foreground">
                   {author}
+                  {verified && (
+                    <span className="ml-2 bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                      Verified
+                    </span>
+                  )}
                 </p>
-                <p className="text-xs text-muted-foreground">
-                  {time}
-                </p>
+                <p className="text-xs text-muted-foreground">{time}</p>
               </div>
-              <Badge variant="outline" className="text-primary border-primary/50">{category}</Badge>
+              <Badge variant="outline" className="text-primary border-primary/50">
+                {category}
+              </Badge>
             </div>
           </div>
         </div>
-        <h3 className="text-lg font-bold font-headline mb-2 text-primary">{title}</h3>
+        <h3 className="text-lg font-bold font-headline mb-2 text-primary">
+          {title}
+        </h3>
         <p className="text-foreground/90 mb-4 text-sm">{content}</p>
 
         {tags && (
@@ -81,7 +90,7 @@ export function PostCard({
                 src={src}
                 alt="Post image"
                 fill
-                sizes="(max-width: 768px) 33vw, 100vw"
+                sizes="(max-width: 768px) 33vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover"
               />
             </div>
@@ -91,19 +100,35 @@ export function PostCard({
 
       <div className="bg-muted/50 p-2 px-4 flex justify-between items-center">
         <div className="flex space-x-2">
-          <Button variant="ghost" size="sm" className="flex items-center text-muted-foreground hover:text-primary">
-            <Heart className="mr-2" /> {likes}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex items-center text-muted-foreground hover:text-primary"
+          >
+            <Heart className="mr-2 h-4 w-4" /> {likes}
           </Button>
-          <Button variant="ghost" size="sm" className="flex items-center text-muted-foreground hover:text-primary">
-            <MessageCircle className="mr-2" /> {comments}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex items-center text-muted-foreground hover:text-primary"
+          >
+            <MessageCircle className="mr-2 h-4 w-4" /> {comments}
           </Button>
         </div>
         <div className="flex space-x-1">
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
-            <Bookmark />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-muted-foreground hover:text-primary"
+          >
+            <Bookmark className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary">
-            <Share2 />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-muted-foreground hover:text-primary"
+          >
+            <Share2 className="h-4 w-4" />
           </Button>
         </div>
       </div>
