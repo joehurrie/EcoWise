@@ -66,7 +66,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
       <Sidebar>
         <SidebarHeader className="p-4">
           <Link href="/" className="flex items-center gap-2">
-            <EcoWiseLogo className="w-8 h-8 text-primary" />
+            <EcoWiseLogo className="w-8 h-8 text-accent" />
             <h1 className="text-xl font-bold font-headline text-foreground">
               EcoWise Lite
             </h1>
