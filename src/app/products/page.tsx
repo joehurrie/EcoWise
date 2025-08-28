@@ -6,10 +6,8 @@ export default function ProductsPage() {
   return (
     <div>
       <SearchBar />
-      <div className="flex flex-col md:flex-row gap-6">
-        <FilterPanel />
-        <ProductGrid />
-      </div>
+      <FilterPanel />
+      <ProductGrid />
     </div>
   );
 }
