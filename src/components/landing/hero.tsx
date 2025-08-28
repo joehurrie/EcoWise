@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { HomeIcon, Plus, Barcode } from 'lucide-react';
@@ -38,9 +39,9 @@ export function Hero() {
                 className="rounded-xl w-full h-auto"
                 data-ai-hint="phone scanning product"
               />
-              <div className="absolute -bottom-4 -right-4 bg-[#A6E22E] p-3 rounded-full scan-button">
+              <Link href="/scan" className="absolute -bottom-4 -right-4 bg-[#A6E22E] p-3 rounded-full scan-button hover:bg-accent/90 transition-colors">
                 <Barcode className="h-8 w-8 text-[#15332A]" />
-              </div>
+              </Link>
             </div>
             <div className="mt-6 p-4">
               <h3 className="font-headline text-xl font-bold text-[#333333] mb-2">Scan any product</h3>
