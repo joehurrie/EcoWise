@@ -31,6 +31,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { AlternativesSection } from '@/components/products/alternatives-section';
 
 const formSchema = z.object({
   productName: z.string().optional(),
@@ -229,7 +230,12 @@ export function ProductAnalysisForm() {
         </div>
       )}
 
-      {report && <SustainabilityReportCard report={report} />}
+      {report && (
+        <div className="space-y-8">
+          <SustainabilityReportCard report={report} />
+          <AlternativesSection />
+        </div>
+      )}
     </div>
   );
 }
