@@ -13,7 +13,7 @@ export function Header() {
           <Link href="/" className="hover:text-[#A6E22E] transition">
             Home
           </Link>
-          <Link href="/products/organic-lavender-shampoo-bar" className="hover:text-[#A6E22E] transition">
+          <Link href="/products" className="hover:text-[#A6E22E] transition">
             Products
           </Link>
           <Link href="/dashboard" className="hover:text-[#A6E22E] transition">

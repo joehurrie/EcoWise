@@ -30,7 +30,7 @@ import { Separator } from './ui/separator';
 
 const navItems = [
   { href: '/', label: 'Home', icon: LayoutGrid },
-  { href: '/products/organic-lavender-shampoo-bar', label: 'Products', icon: Package },
+  { href: '/products', label: 'Products', icon: Package },
   { href: '/scan', label: 'Scan Product', icon: ScanLine },
   { href: '/dashboard', label: 'Dashboard', icon: BarChart2 },
   { href: '/community', label: 'Community', icon: Users },
