@@ -65,6 +65,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
                   asChild
                   isActive={pathname.startsWith(item.href) && (item.href !== '/' || pathname === '/')}
                   tooltip={item.label}
+                  className="group-data-[mobile=true]:text-primary-foreground group-data-[mobile=true]:hover:bg-primary/80 group-data-[mobile=true]:data-[active=true]:bg-accent group-data-[mobile=true]:data-[active=true]:text-accent-foreground"
                 >
                   <Link href={item.href}>
                     <item.icon />
