@@ -32,7 +32,6 @@ import { Separator } from './ui/separator';
 import { useEffect } from 'react';
 
 const navItems = [
-  { href: '/', label: 'Home', icon: LayoutGrid },
   { href: '/products', label: 'Products', icon: Package },
   { href: '/scan', label: 'Scan Product', icon: ScanLine },
   { href: '/dashboard', label: 'Dashboard', icon: BarChart2 },
@@ -54,7 +53,9 @@ function MobileSidebarCloser() {
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  if (pathname === '/') {
+  const isHomePage = pathname === '/';
+
+  if (isHomePage) {
     return <>{children}</>;
   }
 
@@ -65,7 +66,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           <Link href="/" className="flex items-center gap-2">
             <EcoWiseLogo className="w-8 h-8 text-primary" />
             <span className="font-headline text-2xl font-bold from-primary to-emerald-600">
-              EcoWise Lite
+              EcoScan
             </span>
           </Link>
         </SidebarHeader>
@@ -74,10 +75,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <Link href={item.href} passHref>
+                <Link href={item.href}>
                   <SidebarMenuButton
-                    as="a"
-                    isActive={pathname === item.href}
+                    isActive={pathname.startsWith(item.href)}
                     tooltip={item.label}
                   >
                     <item.icon />
@@ -110,7 +110,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <header className="flex h-14 items-center justify-between border-b bg-background/80 px-4 backdrop-blur-sm md:hidden">
           <Link href="/" className="flex items-center gap-2 font-bold">
             <EcoWiseLogo className="w-6 h-6 text-primary" />
-            <span className="font-headline text-xl">EcoWise Lite</span>
+            <span className="font-headline text-xl">EcoScan</span>
           </Link>
           <SidebarTrigger />
         </header>
