@@ -1,10 +1,14 @@
+
 'use client';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { generateSustainabilityReport, type GenerateSustainabilityReportOutput } from '@/ai/flows/generate-sustainability-report';
+import {
+  generateSustainabilityReport,
+  type GenerateSustainabilityReportOutput,
+} from '@/ai/flows/generate-sustainability-report';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -15,15 +19,16 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, UploadCloud } from 'lucide-react';
+import { Loader2, UploadCloud, TextSearch, Image as ImageIcon } from 'lucide-react';
 import { EcoWiseLogo } from '@/components/icons';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import { SustainabilityReportCard } from '@/components/scan/sustainability-report-card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const formSchema = z.object({
-  productName: z.string().min(2, 'Product name must be at least 2 characters.'),
+  productName: z.string().optional(),
   productImage: z.string().optional(),
 });
 
@@ -51,12 +56,22 @@ export function ProductSearchForm() {
         const dataUrl = reader.result as string;
         setPreviewImage(dataUrl);
         form.setValue('productImage', dataUrl);
+        form.setValue('productName', form.getValues('productName') || 'Product from image');
+        onSubmit(form.getValues());
       };
       reader.readAsDataURL(file);
     }
   };
 
   async function onSubmit(values: FormValues) {
+    if (!values.productName && !values.productImage) {
+        toast({
+            variant: 'destructive',
+            title: 'Missing Input',
+            description: 'Please enter a product name or upload an image.',
+        });
+        return;
+    }
     setIsLoading(true);
     setReport(null);
 
@@ -77,62 +92,87 @@ export function ProductSearchForm() {
 
   return (
     <div className="space-y-8">
-      <Card>
-        <CardHeader>
-          <CardTitle>Analyze Product</CardTitle>
-          <CardDescription>Upload an image or enter a product name.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="space-y-2">
-                <FormLabel>Product Image (Optional)</FormLabel>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 bg-background relative">
-                  <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleImageChange} accept="image/*" />
-                  <label htmlFor="file-upload" className="cursor-pointer">
-                    {previewImage ? (
-                      <Image src={previewImage} alt="Product preview" width={150} height={150} className="mx-auto rounded-md" />
-                    ) : (
-                      <>
-                        <UploadCloud className="mx-auto h-12 w-12 text-gray-400" />
-                        <p className="mt-2 text-sm text-muted-foreground">
-                          <span className="font-semibold text-primary">Click to upload</span> or drag and drop
-                        </p>
-                        <p className="text-xs text-gray-500">PNG, JPG, or WEBP up to 5MB</p>
-                      </>
-                    )}
-                  </label>
+        <Accordion type="single" collapsible className="w-full" defaultValue="item-1">
+            <AccordionItem value="item-1">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Card className="w-full">
+                        <AccordionTrigger className="p-6 w-full text-left">
+                           <div className="flex items-center gap-3">
+                             <ImageIcon className="w-6 h-6 text-primary"/>
+                             <div>
+                                <h3 className="font-semibold text-lg">Upload an Image</h3>
+                                <p className="text-sm text-muted-foreground">Analyze a photo of the product.</p>
+                             </div>
+                           </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                           <CardContent>
+                            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 bg-background relative">
+                                <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleImageChange} accept="image/*" />
+                                <label htmlFor="file-upload" className="cursor-pointer">
+                                {previewImage ? (
+                                    <NextImage src={previewImage} alt="Product preview" width={150} height={150} className="mx-auto rounded-md" />
+                                ) : (
+                                    <>
+                                    <UploadCloud className="mx-auto h-10 w-10 text-gray-400" />
+                                    <p className="mt-2 text-sm text-muted-foreground">
+                                        <span className="font-semibold text-primary">Click to upload</span>
+                                    </p>
+                                    <p className="text-xs text-gray-500">PNG, JPG, up to 5MB</p>
+                                    </>
+                                )}
+                                </label>
+                            </div>
+                           </CardContent>
+                        </AccordionContent>
+                    </Card>
+
+                    <Card className="w-full">
+                        <AccordionTrigger className="p-6 w-full text-left">
+                             <div className="flex items-center gap-3">
+                             <TextSearch className="w-6 h-6 text-primary"/>
+                             <div>
+                                <h3 className="font-semibold text-lg">Search by Name</h3>
+                                <p className="text-sm text-muted-foreground">Enter the product name to analyze.</p>
+                             </div>
+                           </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            <CardContent>
+                                <Form {...form}>
+                                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                                <FormField
+                                    control={form.control}
+                                    name="productName"
+                                    render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel className="sr-only">Product Name</FormLabel>
+                                        <FormControl>
+                                        <Input placeholder="e.g., Organic Cotton T-Shirt" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                    )}
+                                />
+
+                                <Button type="submit" disabled={isLoading} className="w-full">
+                                    {isLoading ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Analyzing...
+                                    </>
+                                    ) : (
+                                    'Analyze Product Name'
+                                    )}
+                                </Button>
+                                </form>
+                            </Form>
+                            </CardContent>
+                        </AccordionContent>
+                    </Card>
                 </div>
-              </div>
-
-              <FormField
-                control={form.control}
-                name="productName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Product Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g., Organic Cotton T-Shirt" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <Button type="submit" disabled={isLoading} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generating Report...
-                  </>
-                ) : (
-                  'Generate Report'
-                )}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+            </AccordionItem>
+        </Accordion>
 
       {isLoading && (
         <div className="flex flex-col items-center justify-center text-center space-y-4 py-12">
@@ -146,3 +186,4 @@ export function ProductSearchForm() {
     </div>
   );
 }
+
