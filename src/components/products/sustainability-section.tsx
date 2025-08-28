@@ -52,9 +52,9 @@ export function SustainabilitySection() {
                         <div className="p-4">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <ScoreBreakdown title="Carbon Footprint" score="A+" />
-                                <Score-breakdown title="Packaging" score="A+" />
-                                <Score-breakdown title="Sourcing Ethics" score="A" />
-                                <Score-breakdown title="Recyclability" score="A" />
+                                <ScoreBreakdown title="Packaging" score="A+" />
+                                <ScoreBreakdown title="Sourcing Ethics" score="A" />
+                                <ScoreBreakdown title="Recyclability" score="A" />
                             </div>
                         </div>
                     </div>
@@ -73,4 +73,3 @@ export function SustainabilitySection() {
         </section>
     );
 }
-
