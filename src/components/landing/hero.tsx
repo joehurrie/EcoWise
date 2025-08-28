@@ -39,8 +39,9 @@ export function Hero() {
                 className="rounded-xl w-full h-auto"
                 data-ai-hint="phone scanning product"
               />
-              <Link href="/scan" className="absolute -bottom-4 -right-4 bg-[#A6E22E] p-3 rounded-full scan-button hover:bg-accent/90 transition-colors">
-                <Barcode className="h-8 w-8 text-[#15332A]" />
+              <Link href="/scan" className="absolute -bottom-6 -right-6 bg-[#A6E22E] p-4 rounded-full scan-button hover:bg-accent/90 transition-all flex items-center gap-2 text-[#15332A] font-bold">
+                <Barcode className="h-8 w-8" />
+                <span className="text-lg pr-2">Scan</span>
               </Link>
             </div>
             <div className="mt-6 p-4">
