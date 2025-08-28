@@ -13,6 +13,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarTrigger,
+  useSidebar,
 } from '@/components/ui/sidebar';
 import {
   LayoutGrid,
@@ -28,6 +29,7 @@ import { Button } from './ui/button';
 import type { ReactNode } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Separator } from './ui/separator';
+import { useEffect } from 'react';
 
 const navItems = [
   { href: '/', label: 'Home', icon: LayoutGrid },
@@ -38,6 +40,19 @@ const navItems = [
   { href: '/partner', label: 'For Partners', icon: Briefcase },
 ];
 
+function MobileSidebarCloser() {
+  const pathname = usePathname();
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  useEffect(() => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  }, [pathname, isMobile, setOpenMobile]);
+
+  return null;
+}
+
 export function AppLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   
@@ -47,6 +62,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <SidebarProvider>
+      <MobileSidebarCloser />
       <Sidebar>
         <SidebarHeader className="p-4">
           <Link href="/" className="flex items-center gap-2">
