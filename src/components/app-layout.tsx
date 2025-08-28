@@ -20,6 +20,7 @@ import {
   BarChart2,
   Users,
   Menu,
+  Package,
 } from 'lucide-react';
 import { Logo } from './icons';
 import { Button } from './ui/button';
@@ -29,6 +30,7 @@ import { Separator } from './ui/separator';
 
 const navItems = [
   { href: '/', label: 'Home', icon: LayoutGrid },
+  { href: '/products/organic-lavender-shampoo-bar', label: 'Products', icon: Package },
   { href: '/scan', label: 'Scan Product', icon: ScanLine },
   { href: '/dashboard', label: 'Dashboard', icon: BarChart2 },
   { href: '/community', label: 'Community', icon: Users },
@@ -55,7 +57,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === item.href}
+                  isActive={pathname.startsWith(item.href) && (item.href !== '/' || pathname === '/')}
                   tooltip={item.label}
                 >
                   <Link href={item.href}>
