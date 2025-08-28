@@ -21,6 +21,7 @@ import { Loader2, UploadCloud } from 'lucide-react';
 import { Logo } from '@/components/icons';
 import Image from 'next/image';
 import { SustainabilityReportCard } from '@/components/scan/sustainability-report-card';
+import { Label } from '@/components/ui/label';
 
 const formSchema = z.object({
   productName: z.string().min(2, 'Product name must be at least 2 characters.'),
