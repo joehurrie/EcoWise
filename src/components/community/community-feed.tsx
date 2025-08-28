@@ -11,8 +11,8 @@ import { Button } from '@/components/ui/button';
 export function CommunityFeed() {
   return (
     <section>
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-gray-900">Community Feed</h2>
+      <div className="flex flex-wrap justify-between items-center gap-4 mb-6">
+        <h2 className="text-2xl font-headline font-bold text-primary">Community Feed</h2>
         <div className="flex items-center space-x-2">
           <Select defaultValue="all">
             <SelectTrigger className="w-[150px] text-sm">
@@ -39,7 +39,7 @@ export function CommunityFeed() {
           </Select>
         </div>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-6">
         <PostCard
           author="Maria S."
           avatarFallback="M"
@@ -68,11 +68,8 @@ export function CommunityFeed() {
           comments={23}
         />
       </div>
-      <div className="text-center mt-6">
-        <Button
-          variant="outline"
-          className="border-emerald-500 text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700"
-        >
+      <div className="text-center mt-8">
+        <Button variant="outline" className="text-primary border-primary hover:bg-accent/20 hover:text-primary">
           Load More Posts
         </Button>
       </div>

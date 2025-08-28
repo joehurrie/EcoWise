@@ -1,6 +1,8 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Trophy } from 'lucide-react';
 
 const contributors = [
   {
@@ -8,63 +10,66 @@ const contributors = [
     role: 'Most Helpful Reviewer',
     points: 1240,
     avatarFallback: 'A',
-    color: 'amber',
+    color: 'bg-yellow-400',
   },
   {
     name: 'Sarah L.',
     role: 'Top Tip Sharer',
     points: 987,
     avatarFallback: 'S',
-    color: 'purple',
+    color: 'bg-slate-400',
   },
   {
     name: 'David K.',
     role: 'EcoWise Scout',
     points: 756,
     avatarFallback: 'D',
-    color: 'blue',
+    color: 'bg-orange-400',
   },
 ];
 
 export function TopContributors() {
   return (
-    <section className="bg-white rounded-xl shadow-sm p-5">
-      <h2 className="text-xl font-bold text-gray-900 mb-4">
-        Top Contributors
-      </h2>
-
-      <div className="mb-4 space-y-3">
-        {contributors.map((contributor) => (
-          <div key={contributor.name} className="flex items-center">
-            <Avatar className="h-10 w-10 mr-3">
-              <AvatarFallback
-                className={`bg-${contributor.color}-100 text-${contributor.color}-800`}
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-xl font-headline text-primary">
+          Top Contributors
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="mb-4 space-y-4">
+          {contributors.map((contributor, index) => (
+            <div key={contributor.name} className="flex items-center gap-4">
+              <div className="flex-shrink-0 font-bold w-5 text-center text-muted-foreground">{index + 1}</div>
+              <Avatar className="h-10 w-10">
+                <AvatarFallback className="bg-primary/10 text-primary font-bold">
+                  {contributor.avatarFallback}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex-grow">
+                <p className="font-semibold text-foreground">{contributor.name}</p>
+                <p className="text-xs text-muted-foreground">{contributor.role}</p>
+              </div>
+              <Badge
+                variant="secondary"
+                className="flex-shrink-0 bg-accent/30 text-primary font-bold"
               >
-                {contributor.avatarFallback}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="font-medium">{contributor.name}</p>
-              <p className="text-xs text-gray-500">{contributor.role}</p>
+                {contributor.points} pts
+              </Badge>
             </div>
-            <Badge
-              variant="secondary"
-              className={`ml-auto bg-${contributor.color}-100 text-${contributor.color}-800`}
-            >
-              {contributor.points} pts
-            </Badge>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className="text-center">
-        <Button
-          variant="outline"
-          className="border-emerald-500 text-emerald-600 hover:bg-emerald-50 text-sm"
-        >
-          View Leaderboard
-        </Button>
-      </div>
-    </section>
+        <div className="mt-6">
+          <Button
+            variant="outline"
+            className="w-full text-primary border-primary/50 hover:bg-accent/20 hover:text-primary"
+          >
+            <Trophy className="mr-2" />
+            View Leaderboard
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

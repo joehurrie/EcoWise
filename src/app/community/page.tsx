@@ -10,20 +10,16 @@ export default function CommunityPage() {
   return (
     <div className="space-y-8">
       <WelcomeBanner />
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="w-full lg:w-2/3">
-          <div className="space-y-8">
-            <CommunityFeed />
-            <SubmitProduct />
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 space-y-8">
+          <CommunityFeed />
+          <SubmitProduct />
         </div>
-        <div className="w-full lg:w-1/3">
-          <div className="space-y-6">
-            <QuickPoll />
-            <UpcomingEvents />
-            <TopContributors />
-            <DiscussionBoards />
-          </div>
+        <div className="space-y-6">
+          <QuickPoll />
+          <UpcomingEvents />
+          <TopContributors />
+          <DiscussionBoards />
         </div>
       </div>
     </div>
