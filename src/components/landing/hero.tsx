@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export function Hero() {
   return (
-    <section className="hero-section text-white py-16 px-6">
+    <section className="hero-section text-white py-12 px-6">
       <div className="container mx-auto flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 mb-10 md:mb-0">
           <h2 className="font-headline text-4xl md:text-5xl font-bold mb-6 leading-tight">
@@ -28,14 +28,14 @@ export function Hero() {
           </div>
         </div>
         <div className="md:w-1/2 flex justify-center">
-          <div className="bg-white rounded-2xl p-4 shadow-xl w-full max-w-md">
+          <div className="bg-white rounded-2xl p-4 shadow-xl w-full max-w-xs">
             <div className="relative">
               <Image
                 src="https://images.unsplash.com/photo-1587854692152-e6aad73518b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
                 alt="Phone scanning product"
-                width={634}
-                height={845}
-                className="rounded-xl w-full"
+                width={234}
+                height={400}
+                className="rounded-xl w-full h-auto"
                 data-ai-hint="phone scanning product"
               />
               <div className="absolute -bottom-4 -right-4 bg-[#A6E22E] p-3 rounded-full scan-button">
