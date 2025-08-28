@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -90,6 +91,7 @@ export function PostCard({
                 src={src}
                 alt="Post image"
                 fill
+                sizes="(max-width: 768px) 33vw, 15vw"
                 className="object-cover"
               />
             </div>
