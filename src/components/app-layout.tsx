@@ -53,6 +53,11 @@ function MobileSidebarCloser() {
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+
+  if (pathname === '/') {
+    return <>{children}</>;
+  }
+
   return (
     <SidebarProvider>
       <Sidebar>
