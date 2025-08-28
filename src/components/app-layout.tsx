@@ -24,7 +24,7 @@ import {
   Package,
   Briefcase,
 } from 'lucide-react';
-import { Logo } from './icons';
+import { EcoWiseLogo } from './icons';
 import { Button } from './ui/button';
 import type { ReactNode } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -66,9 +66,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
       <Sidebar>
         <SidebarHeader className="p-4">
           <Link href="/" className="flex items-center gap-2">
-            <Logo className="w-8 h-8 text-primary" />
+            <EcoWiseLogo className="w-8 h-8 text-primary" />
             <h1 className="text-xl font-bold font-headline text-foreground">
-              EcoScan
+              EcoWise Lite
             </h1>
           </Link>
         </SidebarHeader>
@@ -128,9 +128,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
             <span className="sr-only">Toggle Menu</span>
           </SidebarTrigger>
           <Link href="/" className="flex items-center gap-2">
-            <Logo className="w-6 h-6 text-primary" />
+            <EcoWiseLogo className="w-6 h-6 text-primary" />
             <h1 className="text-lg font-bold font-headline text-foreground">
-              EcoScan
+              EcoWise Lite
             </h1>
           </Link>
         </header>

@@ -18,7 +18,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, UploadCloud } from 'lucide-react';
-import { Logo } from '@/components/icons';
+import { EcoWiseLogo } from '@/components/icons';
 import Image from 'next/image';
 import { SustainabilityReportCard } from '@/components/scan/sustainability-report-card';
 import { Label } from '@/components/ui/label';
@@ -137,7 +137,7 @@ export function ProductSearchForm() {
 
       {isLoading && (
         <div className="flex flex-col items-center justify-center text-center space-y-4 py-12">
-          <Logo className="w-12 h-12 text-primary animate-pulse" />
+          <EcoWiseLogo className="w-12 h-12 text-primary animate-pulse" />
           <p className="text-muted-foreground">Analyzing sustainability data for {form.getValues('productName')}...</p>
           <p className="text-sm text-muted-foreground/80">This may take a moment.</p>
         </div>
