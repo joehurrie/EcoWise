@@ -21,7 +21,6 @@ import { Loader2, UploadCloud } from 'lucide-react';
 import { EcoWiseLogo } from '@/components/icons';
 import Image from 'next/image';
 import { SustainabilityReportCard } from '@/components/scan/sustainability-report-card';
-import { Label } from '@/components/ui/label';
 
 const formSchema = z.object({
   productName: z.string().min(2, 'Product name must be at least 2 characters.'),
@@ -87,7 +86,7 @@ export function ProductSearchForm() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="space-y-2">
-                <Label>Product Image (Optional)</Label>
+                <FormLabel>Product Image (Optional)</FormLabel>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 bg-background relative">
                   <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleImageChange} accept="image/*" />
                   <label htmlFor="file-upload" className="cursor-pointer">

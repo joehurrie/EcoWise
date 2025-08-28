@@ -14,7 +14,6 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarTrigger,
-  useSidebar,
 } from '@/components/ui/sidebar';
 import {
   LayoutGrid,
@@ -30,7 +29,6 @@ import { Button } from './ui/button';
 import type { ReactNode } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Separator } from './ui/separator';
-import { useEffect } from 'react';
 
 const navItems = [
   { href: '/', label: 'Home', icon: LayoutGrid },
@@ -40,19 +38,6 @@ const navItems = [
   { href: '/community', label: 'Community', icon: Users },
   { href: '/partner', label: 'For Partners', icon: Briefcase },
 ];
-
-function MobileSidebarCloser() {
-  const pathname = usePathname();
-  const { isMobile, setOpenMobile } = useSidebar();
-
-  useEffect(() => {
-    if (isMobile) {
-      setOpenMobile(false);
-    }
-  }, [pathname, isMobile, setOpenMobile]);
-
-  return null;
-}
 
 export function AppLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -64,12 +49,11 @@ export function AppLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
       <Sidebar>
-        <MobileSidebarCloser />
         <SidebarHeader className="p-4">
           <Link href="/" className="flex items-center gap-2">
-            <EcoWiseLogo className="w-8 h-8 text-accent" />
+            <EcoWiseLogo className="w-8 h-8 text-primary" />
             <h1 className="text-xl font-bold font-headline text-foreground">
-              EcoWise Lite
+              EcoScan
             </h1>
           </Link>
         </SidebarHeader>
@@ -82,7 +66,6 @@ export function AppLayout({ children }: { children: ReactNode }) {
                   asChild
                   isActive={item.href !== '/' && pathname.startsWith(item.href) || pathname === item.href}
                   tooltip={item.label}
-                  className="group-data-[mobile=true]:text-primary-foreground group-data-[mobile=true]:hover:bg-primary/80 group-data-[mobile=true]:data-[active=true]:bg-accent group-data-[mobile=true]:data-[active=true]:text-accent-foreground"
                 >
                   <Link href={item.href}>
                     <item.icon />
@@ -131,7 +114,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
           <Link href="/" className="flex items-center gap-2">
             <EcoWiseLogo className="w-6 h-6 text-primary" />
             <h1 className="text-lg font-bold font-headline text-foreground">
-              EcoWise Lite
+              EcoScan
             </h1>
           </Link>
         </header>
