@@ -14,7 +14,6 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarTrigger,
-  useSidebar,
 } from '@/components/ui/sidebar';
 import {
   LayoutGrid,
@@ -27,7 +26,6 @@ import {
 } from 'lucide-react';
 import { EcoWiseLogo } from './icons';
 import { Button } from './ui/button';
-import React, { ReactNode } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Separator } from './ui/separator';
 
@@ -40,25 +38,11 @@ const navItems = [
   { href: '/partner', label: 'For Partners', icon: Briefcase },
 ];
 
-function MobileSidebarCloser() {
-  const pathname = usePathname();
-  const { setOpenMobile, isMobile } = useSidebar();
-
-  React.useEffect(() => {
-    if (isMobile) {
-      setOpenMobile(false);
-    }
-  }, [pathname, isMobile, setOpenMobile]);
-
-  return null;
-}
-
-export function AppLayout({ children }: { children: ReactNode }) {
+export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   return (
     <SidebarProvider>
       <Sidebar>
-        <MobileSidebarCloser />
         <SidebarHeader className="p-4">
           <Link href="/" className="flex items-center gap-2">
             <EcoWiseLogo className="w-8 h-8 text-primary" />

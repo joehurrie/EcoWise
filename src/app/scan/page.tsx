@@ -3,7 +3,7 @@ import { ProductSearchForm } from './product-search-form';
 export default function ScanPage() {
   return (
     <div className="-m-8">
-      <div className="bg-primary p-8 text-primary-foreground text-center">
+      <div className="bg-gradient-to-r from-primary to-emerald-600 p-8 text-primary-foreground">
         <div className="container mx-auto max-w-3xl">
           <h1 className="text-4xl font-headline tracking-tight">
             Analyze a Product's Sustainability

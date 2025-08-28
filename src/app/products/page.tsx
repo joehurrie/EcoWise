@@ -5,7 +5,7 @@ import { SearchBar } from '@/components/products/search-bar';
 export default function ProductsPage() {
   return (
     <div className="-m-8">
-      <div className="bg-primary p-8 text-primary-foreground mb-8">
+      <div className="bg-gradient-to-r from-primary to-emerald-600 p-8 text-primary-foreground mb-8">
         <div className="container mx-auto">
           <h1 className="text-3xl font-bold font-headline mb-2">
             Explore Sustainable Products
