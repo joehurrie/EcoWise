@@ -21,6 +21,7 @@ import {
   Users,
   Menu,
   Package,
+  Briefcase,
 } from 'lucide-react';
 import { Logo } from './icons';
 import { Button } from './ui/button';
@@ -34,6 +35,7 @@ const navItems = [
   { href: '/scan', label: 'Scan Product', icon: ScanLine },
   { href: '/dashboard', label: 'Dashboard', icon: BarChart2 },
   { href: '/community', label: 'Community', icon: Users },
+  { href: '/partner', label: 'For Partners', icon: Briefcase },
 ];
 
 export function AppLayout({ children }: { children: ReactNode }) {
