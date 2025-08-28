@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Leaf, Recycle, HandHoldingHeart, UserCircle } from 'lucide-react';
+import { Leaf, Recycle, HandHeart, UserCircle } from 'lucide-react';
 
 export function DashboardHeader() {
   return (
@@ -29,7 +29,7 @@ export function DashboardHeader() {
               <Recycle className="mr-2 h-5 w-5" /> 12 plastic items avoided
             </div>
             <div className="bg-accent text-primary px-4 py-2 rounded-lg font-medium flex items-center">
-              <HandHoldingHeart className="mr-2 h-5 w-5" /> 1 ethical brand supported
+              <HandHeart className="mr-2 h-5 w-5" /> 1 ethical brand supported
             </div>
           </div>
         </div>
