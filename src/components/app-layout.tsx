@@ -80,7 +80,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
               <SidebarMenuItem key={item.href}>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname.startsWith(item.href) && (item.href !== '/' || pathname === '/')}
+                  isActive={item.href !== '/' && pathname.startsWith(item.href) || pathname === item.href}
                   tooltip={item.label}
                   className="group-data-[mobile=true]:text-primary-foreground group-data-[mobile=true]:hover:bg-primary/80 group-data-[mobile=true]:data-[active=true]:bg-accent group-data-[mobile=true]:data-[active=true]:text-accent-foreground"
                 >
