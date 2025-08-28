@@ -33,8 +33,8 @@ export function Hero() {
               <Image
                 src="https://images.unsplash.com/photo-1587854692152-e6aad73518b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
                 alt="Phone scanning product"
-                width={234}
-                height={400}
+                width={154}
+                height={100}
                 className="rounded-xl w-full h-auto"
                 data-ai-hint="phone scanning product"
               />
