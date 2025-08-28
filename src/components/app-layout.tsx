@@ -81,8 +81,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                     isActive={pathname.startsWith(item.href)}
                     tooltip={item.label}
                   >
-                    <item.icon />
-                    <span>{item.label}</span>
+                    <>
+                      <item.icon />
+                      <span>{item.label}</span>
+                    </>
                   </SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
