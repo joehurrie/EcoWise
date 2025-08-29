@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <EcoWiseLogo className="h-8 w-8 text-[#A6E22E]" />
+              <EcoWiseLogo className="h-10 w-10 text-[#A6E22E]" />
               <h3 className="font-headline text-2xl font-bold lowercase">ecowise</h3>
             </div>
             <p className="text-gray-300 mb-4">Making sustainable shopping easy and accessible for everyone in Kenya.</p>

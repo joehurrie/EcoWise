@@ -12,7 +12,7 @@ export function Header() {
     <header className="bg-[#15332A] text-white py-4 px-6 sticky top-0 z-50 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <EcoWiseLogo className="h-8 w-8 text-[#A6E22E]" />
+          <EcoWiseLogo className="h-10 w-10 text-[#A6E22E]" />
           <h1 className="font-headline text-2xl font-bold lowercase">ecowise</h1>
         </div>
         <nav className="hidden md:flex space-x-8">

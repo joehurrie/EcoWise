@@ -67,7 +67,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <Sidebar>
         <SidebarHeader className="p-4">
           <Link href="/" className="flex items-center gap-2">
-            <EcoWiseLogo className="w-8 h-8 text-primary" />
+            <EcoWiseLogo className="w-10 h-10 text-primary" />
             <span className="font-headline text-2xl font-bold from-primary to-emerald-600 lowercase">
               ecowise
             </span>
@@ -116,7 +116,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <SidebarInset>
         <header className="flex h-14 items-center justify-between border-b bg-background/80 px-4 backdrop-blur-sm md:hidden">
           <Link href="/" className="flex items-center gap-2 font-bold">
-            <EcoWiseLogo className="w-6 h-6 text-primary" />
+            <EcoWiseLogo className="w-8 h-8 text-primary" />
             <span className="font-headline text-xl lowercase">ecowise</span>
           </Link>
           <SidebarTrigger />
