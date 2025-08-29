@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -40,7 +40,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function ProductAnalysisForm() {
+export function ProductAnalysisForm({ capturedImage }: { capturedImage: string | null }) {
   const [report, setReport] =
     useState<GenerateSustainabilityReportOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +54,15 @@ export function ProductAnalysisForm() {
       productImage: '',
     },
   });
+
+  useEffect(() => {
+    if (capturedImage) {
+      setPreviewImage(capturedImage);
+      form.setValue('productImage', capturedImage);
+      form.setValue('productName', 'Product from captured image');
+      onSubmit({ productImage: capturedImage, productName: 'Product from captured image' });
+    }
+  }, [capturedImage]);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];

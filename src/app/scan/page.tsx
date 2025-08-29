@@ -1,7 +1,7 @@
 
 'use client';
 import { useState, useRef, useEffect } from 'react';
-import { Barcode, Camera, CameraOff, Loader2 } from 'lucide-react';
+import { Barcode, Camera, CameraOff, Loader2, Aperture } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
@@ -15,7 +15,9 @@ export default function ScanPage() {
   );
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [isActivating, setIsActivating] = useState(false);
+  const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const { toast } = useToast();
 
   const getCameraPermission = async () => {
@@ -30,6 +32,7 @@ export default function ScanPage() {
     }
 
     setIsActivating(true);
+    setCapturedImage(null);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       if (videoRef.current) {
@@ -50,17 +53,46 @@ export default function ScanPage() {
     }
   };
 
+  const stopCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const stream = videoRef.current.srcObject as MediaStream;
+      stream.getTracks().forEach((track) => track.stop());
+      videoRef.current.srcObject = null;
+    }
+    setIsCameraActive(false);
+  }
+
+  const handleCapture = () => {
+    if (videoRef.current && canvasRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const context = canvas.getContext('2d');
+      if (context) {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL('image/jpeg');
+        setCapturedImage(dataUrl);
+        stopCamera();
+      } else {
+        toast({
+            variant: 'destructive',
+            title: 'Capture Failed',
+            description: 'Could not get image from camera.',
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     return () => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        const stream = videoRef.current.srcObject as MediaStream;
-        stream.getTracks().forEach((track) => track.stop());
-      }
+      stopCamera();
     };
   }, []);
 
   return (
     <div className="-m-8">
+      <canvas ref={canvasRef} className="hidden" />
       <div className="bg-primary p-8 text-primary-foreground">
         <div className="container mx-auto max-w-3xl">
           <h1 className="text-4xl font-headline tracking-tight">
@@ -116,12 +148,19 @@ export default function ScanPage() {
             />
 
             {isCameraActive && hasCameraPermission && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 pointer-events-none">
-                <div className="w-3/4 max-w-md h-28 border-4 border-white/80 rounded-lg" />
-                <Barcode className="w-16 h-16 text-white/80 mt-4" />
-                <p className="text-white font-medium mt-2">
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
+                <div className="w-3/4 max-w-md h-28 border-4 border-white/80 rounded-lg pointer-events-none" />
+                <p className="text-white font-medium mt-2 pointer-events-none">
                   Position barcode inside the frame
                 </p>
+                <Button
+                    size="lg"
+                    className="absolute bottom-6 bg-white/80 text-black hover:bg-white"
+                    onClick={handleCapture}
+                >
+                    <Aperture className="mr-2" />
+                    Capture & Analyze
+                </Button>
               </div>
             )}
             
@@ -145,7 +184,7 @@ export default function ScanPage() {
 
 
         <div className="mt-8">
-          <ProductAnalysisForm />
+          <ProductAnalysisForm capturedImage={capturedImage} />
         </div>
       </div>
     </div>
