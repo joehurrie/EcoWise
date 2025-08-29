@@ -8,14 +8,14 @@ export function Hero() {
   return (
     <section className="hero-section text-white py-12 px-6 flex items-center min-h-[calc(100vh-68px)]">
       <div className="container mx-auto flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
+        <div className="md:w-1/2 mb-10 md:mb-0 text-left">
           <h2 className="font-headline text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            eco-friendly choices in your everyday shopping
+            Eco-friendly choices in your everyday shopping
           </h2>
           <p className="text-lg mb-8">
             Scan products to view sustainability scores, discover eco-friendly alternatives, and track your personal impact.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <div className="flex flex-col sm:flex-row gap-4 justify-start">
             <Link href="/scan">
               <Button className="bg-[#4CAF50] hover:bg-green-600 text-white font-medium py-3 px-6 rounded-md transition flex items-center justify-center">
                 <HomeIcon className="h-5 w-5 mr-2" />
@@ -28,7 +28,7 @@ export function Hero() {
             </Button>
           </div>
         </div>
-        <div className="md:w-1/2 flex justify-center">
+        <div className="md:w-1/2 flex justify-center mt-12 md:mt-0">
           <div className="bg-white rounded-2xl p-4 shadow-xl w-full max-w-sm">
             <div className="relative">
               <Image
