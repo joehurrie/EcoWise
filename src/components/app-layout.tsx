@@ -68,8 +68,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarHeader className="p-4">
           <Link href="/" className="flex items-center gap-2">
             <EcoWiseLogo className="w-8 h-8 text-primary" />
-            <span className="font-headline text-2xl font-bold from-primary to-emerald-600">
-              EcoWise
+            <span className="font-headline text-2xl font-bold from-primary to-emerald-600 lowercase">
+              ecowise
             </span>
           </Link>
         </SidebarHeader>
@@ -78,9 +78,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <Link href={item.href}>
+                <Link href={item.href} legacyBehavior passHref>
                   <SidebarMenuButton
-                    asChild
+                    as="a"
                     isActive={
                       item.href === '/'
                         ? pathname === item.href
@@ -88,10 +88,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                     }
                     tooltip={item.label}
                   >
-                    <span>
-                      <item.icon />
-                      <span>{item.label}</span>
-                    </span>
+                    <item.icon />
+                    <span>{item.label}</span>
                   </SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
@@ -120,7 +118,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <header className="flex h-14 items-center justify-between border-b bg-background/80 px-4 backdrop-blur-sm md:hidden">
           <Link href="/" className="flex items-center gap-2 font-bold">
             <EcoWiseLogo className="w-6 h-6 text-primary" />
-            <span className="font-headline text-xl">EcoWise</span>
+            <span className="font-headline text-xl lowercase">ecowise</span>
           </Link>
           <SidebarTrigger />
         </header>

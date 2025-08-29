@@ -13,7 +13,7 @@ export function Header() {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <EcoWiseLogo className="h-8 w-8 text-[#A6E22E]" />
-          <h1 className="font-headline text-2xl font-bold">EcoWise</h1>
+          <h1 className="font-headline text-2xl font-bold lowercase">ecowise</h1>
         </div>
         <nav className="hidden md:flex space-x-8">
           <Link href="/" className="hover:text-[#A6E22E] transition">

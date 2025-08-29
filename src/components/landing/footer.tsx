@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <EcoWiseLogo className="h-8 w-8 text-[#A6E22E]" />
-              <h3 className="font-headline text-2xl font-bold">EcoWise</h3>
+              <h3 className="font-headline text-2xl font-bold lowercase">ecowise</h3>
             </div>
             <p className="text-gray-300 mb-4">Making sustainable shopping easy and accessible for everyone in Kenya.</p>
             <div className="flex space-x-4">
@@ -94,7 +94,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2023 EcoWise. All rights reserved.</p>
+          <p>&copy; 2023 ecowise. All rights reserved.</p>
         </div>
       </div>
     </footer>

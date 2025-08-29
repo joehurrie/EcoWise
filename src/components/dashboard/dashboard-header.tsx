@@ -7,7 +7,7 @@ export function DashboardHeader() {
       <div className="container mx-auto">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-headline font-bold">EcoWise</h1>
+            <h1 className="text-3xl font-headline font-bold lowercase">ecowise</h1>
             <p className="text-accent">Your sustainable journey companion</p>
           </div>
           <div className="flex items-center space-x-4">
