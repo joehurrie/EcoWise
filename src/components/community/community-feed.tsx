@@ -60,9 +60,9 @@ export function CommunityFeed() {
           title="Zero-waste kitchen swap that saved me money"
           content="I replaced all my plastic containers with glass jars and beeswax wraps. Initial investment was about $120 but I've saved over $300 in 6 months by buying bulk and reducing food waste. Here's how I did it..."
           images={[
-            'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-            'https://images.unsplash.com/photo-1583947581924-a6d1dfc529a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-            'https://images.unsplash.com/photo-1550583720-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+            'https://i.pinimg.com/1200x/1f/e7/80/1fe780a2ec37c89c3ddd65bb82cb7106.jpg',
+            'https://i.pinimg.com/736x/af/45/03/af4503bea312e0290d6ff1ba6a8be3ca.jpg',
+            'https://i.pinimg.com/736x/a5/77/35/a57735be402ed0d5b91fde00fefa5cb2.jpg',
           ]}
           likes={87}
           comments={23}

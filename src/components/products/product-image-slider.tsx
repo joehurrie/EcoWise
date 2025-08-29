@@ -49,7 +49,7 @@ export function ProductImageSlider() {
     <div ref={sliderContainer} className="slider-container mb-4">
       <Image
         ref={beforeImage}
-        src="https://picsum.photos/800/800?random=1"
+        src="https://i.pinimg.com/1200x/db/a9/d3/dba9d35f9d8119b2af988b5c6753a006.jpg"
         alt="Eco-friendly shampoo"
         className="slider-image"
         width={800}
@@ -57,7 +57,7 @@ export function ProductImageSlider() {
         style={{ clipPath: 'inset(0 50% 0 0)'}}
       />
       <Image
-        src="https://picsum.photos/800/800?random=2"
+        src="https://i.pinimg.com/736x/78/8c/b4/788cb4bc473707c951a7d20555c2fd99.jpg"
         alt="Traditional shampoo"
         className="slider-image"
         width={800}

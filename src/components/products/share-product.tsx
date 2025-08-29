@@ -20,7 +20,7 @@ export function ShareProduct() {
                 <div className="border border-gray-200 rounded-lg p-4 mb-6">
                     <div className="flex flex-col md:flex-row">
                         <div className="w-full md:w-1/4 mb-4 md:mb-0">
-                            <Image src="https://picsum.photos/800/800?random=1" alt="Product" width={200} height={200} className="w-full h-auto rounded-lg" />
+                            <Image src="https://i.pinimg.com/736x/78/8c/b4/788cb4bc473707c951a7d20555c2fd99.jpg" alt="Product" width={200} height={200} className="w-full h-auto rounded-lg" />
                         </div>
                         <div className="w-full md:w-3/4 md:pl-4">
                             <h3 className="font-bold text-lg mb-1">Organic Lavender Shampoo Bar</h3>

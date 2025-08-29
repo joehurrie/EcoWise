@@ -4,9 +4,9 @@ import { Toaster } from '@/components/ui/toaster';
 import { AppLayout } from '@/components/app-layout';
 
 export const metadata: Metadata = {
-  title: 'EcoScan - Your Guide to Sustainable Shopping',
+  title: 'EcoWise - Your Guide to Sustainable Shopping',
   description:
-    'Make climate-conscious choices with EcoScan. Scan products, get sustainability scores, and track your impact.',
+    'Make climate-conscious choices with EcoWise. Scan products, get sustainability scores, and track your impact.',
 };
 
 export default function RootLayout({

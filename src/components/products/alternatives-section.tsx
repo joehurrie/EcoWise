@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Recycle, PlusCircle, Filter } from 'lucide-react';
 
 const alternatives = [
-  { name: 'Rosemary Mint Shampoo Bar', brand: 'By EarthKind', price: '$10.99', rating: 'A+', image: 'https://picsum.photos/800/800?random=3', tags: ['Plastic-free', 'Locally made']},
-  { name: 'Refillable Shampoo', brand: 'By EcoBath', price: '$14.99', rating: 'A', image: 'https://picsum.photos/800/800?random=4', tags: ['Refillable', 'Organic']},
-  { name: 'Aloe Vera Shampoo', brand: 'By Nature\'s Way', price: '$9.49', rating: 'B', image: 'https://picsum.photos/800/800?random=5', tags: ['Biodegradable', 'Recycled plastic']},
-  { name: 'Charcoal Detox Bar', brand: 'By PureLife', price: '$11.99', rating: 'A+', image: 'https://picsum.photos/800/800?random=6', tags: ['Plastic-free', 'Organic', 'Zero waste']},
+  { name: 'Rosemary Mint Shampoo Bar', brand: 'By EarthKind', price: '$10.99', rating: 'A+', image: 'https://i.pinimg.com/736x/b7/93/2c/b7932c34c30cd9892bd335770e060e88.jpg', tags: ['Plastic-free', 'Locally made']},
+  { name: 'Refillable Shampoo', brand: 'By EcoBath', price: '$14.99', rating: 'A', image: 'https://i.pinimg.com/1200x/c3/2a/fa/c32afaba5bde265017093ebebd1f425a.jpg', tags: ['Refillable', 'Organic']},
+  { name: 'Aloe Vera Shampoo', brand: 'By Nature\'s Way', price: '$9.49', rating: 'B', image: 'https://i.pinimg.com/736x/78/8c/b4/788cb4bc473707c951a7d20555c2fd99.jpg', tags: ['Biodegradable', 'Recycled ']},
+  { name: 'Charcoal Detox Bar', brand: 'By PureLife', price: '$11.99', rating: 'A+', image: 'https://i.pinimg.com/1200x/7a/59/47/7a5947722e8c2cdf142546518534d935.jpg', tags: ['Plastic-free', 'Organic', 'Zero waste']},
 ];
 
 const Tag = ({ children, className }: { children: React.ReactNode, className: string }) => (

@@ -23,7 +23,7 @@ export function HowItWorks() {
     <section className="py-16 px-6 bg-white">
       <div className="container mx-auto">
         <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-16 text-[#333333]">
-          How EcoWise Lite Works
+          How EcoWise Works
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step) => (

@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <EcoWiseLogo className="h-8 w-8 text-[#A6E22E]" />
-              <h3 className="font-headline text-2xl font-bold">EcoWise Lite</h3>
+              <h3 className="font-headline text-2xl font-bold">EcoWise</h3>
             </div>
             <p className="text-gray-300 mb-4">Making sustainable shopping easy and accessible for everyone in Kenya.</p>
             <div className="flex space-x-4">
@@ -88,13 +88,13 @@ export function Footer() {
             <h4 className="font-headline text-lg font-bold mb-4">Contact Us</h4>
             <address className="not-italic text-gray-300">
               <p className="mb-2">Nairobi, Kenya</p>
-              <p className="mb-2">info@ecowiselite.co.ke</p>
+              <p className="mb-2">info@ecowise.co.ke</p>
               <p>+254 700 123 456</p>
             </address>
           </div>
         </div>
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2023 EcoWise Lite. All rights reserved.</p>
+          <p>&copy; 2023 EcoWise. All rights reserved.</p>
         </div>
       </div>
     </footer>

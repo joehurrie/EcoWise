@@ -10,7 +10,7 @@ export function ImpactPreview() {
           <div className="md:w-1/2 mb-10 md:mb-0">
             <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6">Track Your Sustainability Impact</h2>
             <p className="text-lg mb-8">
-              EcoWise Lite helps you visualize the positive changes you're making through your shopping choices.
+              EcoWise helps you visualize the positive changes you're making through your shopping choices.
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-[#1E4538] rounded-xl p-4">

@@ -32,7 +32,7 @@ export function Hero() {
           <div className="bg-white rounded-2xl p-4 shadow-xl w-full max-w-sm">
             <div className="relative">
               <Image
-                src="https://images.unsplash.com/photo-1587854692152-e6aad73518b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                src="https://images.pexels.com/photos/12935075/pexels-photo-12935075.jpeg"
                 alt="Phone scanning product"
                 width={300}
                 height={200}

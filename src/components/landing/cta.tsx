@@ -9,7 +9,7 @@ export function Cta() {
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
             <h2 className="font-headline text-3xl md:text-4xl font-bold mb-4 text-[#15332A]">
-              Download EcoWise Lite Today
+              Download EcoWise Today
             </h2>
             <p className="text-lg mb-6 text-[#333333]">Available for free on iOS and Android devices.</p>
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
@@ -26,7 +26,7 @@ export function Cta() {
           <div className="md:w-1/2 flex justify-center">
             <div className="relative w-48">
               <Image
-                src="https://images.unsplash.com/photo-1555774698-0f77eafce5b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                src="https://i.pinimg.com/1200x/89/7f/a9/897fa96f134afbad3414887e68c31a66.jpg"
                 alt="Phone with app"
                 width={200}
                 height={400}

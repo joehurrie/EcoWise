@@ -26,8 +26,11 @@ export const ArrowsHorizontal = (props: SVGProps<SVGSVGElement>) => (
 );
 
 export const EcoWiseLogo = (props: SVGProps<SVGSVGElement>) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+    <path d="M12 2a10 10 0 0 0-10 10c0 4.95 3.582 9.09 8.262 9.878" />
+    <path d="M7 10h4v4" />
+    <path d="M12 12c4-2 4-6 4-6" />
   </svg>
 );
 
