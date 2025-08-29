@@ -40,7 +40,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function ProductAnalysisForm({ capturedImage }: { capturedImage: string | null }) {
+export function ProductAnalysisForm({ capturedImage, onAnalysisComplete }: { capturedImage: string | null; onAnalysisComplete: () => void; }) {
   const [report, setReport] =
     useState<GenerateSustainabilityReportOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -86,6 +86,7 @@ export function ProductAnalysisForm({ capturedImage }: { capturedImage: string |
         title: 'Missing Input',
         description: 'Please enter a product name or upload an image.',
       });
+      onAnalysisComplete();
       return;
     }
     setIsLoading(true);
@@ -104,127 +105,131 @@ export function ProductAnalysisForm({ capturedImage }: { capturedImage: string |
       });
     } finally {
       setIsLoading(false);
+      onAnalysisComplete();
     }
   }
 
   return (
     <div className="space-y-8">
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="item-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="w-full">
-                <label htmlFor="file-upload" className="cursor-pointer">
-              <AccordionTrigger className="p-6 w-full text-left hover:no-underline">
-                <div className="flex items-center gap-3">
-                  <ImageIcon className="w-6 h-6 text-primary" />
-                  <div>
-                    <h3 className="font-semibold text-lg">Upload an Image</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Analyze a photo of the product.
-                    </p>
+      {!report && !isLoading && (
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card className="w-full">
+                  <label htmlFor="file-upload" className="cursor-pointer">
+                <AccordionTrigger className="p-6 w-full text-left hover:no-underline">
+                  <div className="flex items-center gap-3">
+                    <ImageIcon className="w-6 h-6 text-primary" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Upload an Image</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Analyze a photo of the product.
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </AccordionTrigger>
-              </label>
-              <AccordionContent>
-                <CardContent>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 bg-background relative">
-                    <input
-                      id="file-upload"
-                      name="file-upload"
-                      type="file"
-                      className="sr-only"
-                      onChange={handleImageChange}
-                      accept="image/*"
-                    />
-                    <label htmlFor="file-upload" className="cursor-pointer">
-                      {previewImage ? (
-                        <NextImage
-                          src={previewImage}
-                          alt="Product preview"
-                          width={150}
-                          height={150}
-                          className="mx-auto rounded-md"
-                        />
-                      ) : (
-                        <>
-                          <UploadCloud className="mx-auto h-10 w-10 text-gray-400" />
-                          <p className="mt-2 text-sm text-muted-foreground">
-                            <span className="font-semibold text-primary">
-                              Click to upload
-                            </span>
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            PNG, JPG, up to 5MB
-                          </p>
-                        </>
-                      )}
-                    </label>
-                  </div>
-                </CardContent>
-              </AccordionContent>
-            </Card>
-
-            <Card className="w-full">
-              <AccordionTrigger className="p-6 w-full text-left hover:no-underline">
-                <div className="flex items-center gap-3">
-                  <TextSearch className="w-6 h-6 text-primary" />
-                  <div>
-                    <h3 className="font-semibold text-lg">Search by Name</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Enter the product name to analyze.
-                    </p>
-                  </div>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <CardContent>
-                  <Form {...form}>
-                    <form
-                      onSubmit={form.handleSubmit(onSubmit)}
-                      className="space-y-4"
-                    >
-                      <FormField
-                        control={form.control}
-                        name="productName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="sr-only">
-                              Product Name
-                            </FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="e.g., Organic Cotton T-Shirt"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
+                </AccordionTrigger>
+                </label>
+                <AccordionContent>
+                  <CardContent>
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-primary/50 bg-background relative">
+                      <input
+                        id="file-upload"
+                        name="file-upload"
+                        type="file"
+                        className="sr-only"
+                        onChange={handleImageChange}
+                        accept="image/*"
                       />
-
-                      <Button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-full"
-                      >
-                        {isLoading ? (
-                          <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Analyzing...
-                          </>
+                      <label htmlFor="file-upload" className="cursor-pointer">
+                        {previewImage ? (
+                          <NextImage
+                            src={previewImage}
+                            alt="Product preview"
+                            width={150}
+                            height={150}
+                            className="mx-auto rounded-md"
+                          />
                         ) : (
-                          'Analyze Product Name'
+                          <>
+                            <UploadCloud className="mx-auto h-10 w-10 text-gray-400" />
+                            <p className="mt-2 text-sm text-muted-foreground">
+                              <span className="font-semibold text-primary">
+                                Click to upload
+                              </span>
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              PNG, JPG, up to 5MB
+                            </p>
+                          </>
                         )}
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </AccordionContent>
-            </Card>
-          </div>
-        </AccordionItem>
-      </Accordion>
+                      </label>
+                    </div>
+                  </CardContent>
+                </AccordionContent>
+              </Card>
+
+              <Card className="w-full">
+                <AccordionTrigger className="p-6 w-full text-left hover:no-underline">
+                  <div className="flex items-center gap-3">
+                    <TextSearch className="w-6 h-6 text-primary" />
+                    <div>
+                      <h3 className="font-semibold text-lg">Search by Name</h3>
+                      <p className="text-sm text-muted-foreground">
+                        Enter the product name to analyze.
+                      </p>
+                    </div>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <CardContent>
+                    <Form {...form}>
+                      <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className="space-y-4"
+                      >
+                        <FormField
+                          control={form.control}
+                          name="productName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="sr-only">
+                                Product Name
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="e.g., Organic Cotton T-Shirt"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <Button
+                          type="submit"
+                          disabled={isLoading}
+                          className="w-full"
+                        >
+                          {isLoading ? (
+                            <>
+                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                              Analyzing...
+                            </>
+                          ) : (
+                            'Analyze Product Name'
+                          )}
+                        </Button>
+                      </form>
+                    </Form>
+                  </CardContent>
+                </AccordionContent>
+              </Card>
+            </div>
+          </AccordionItem>
+        </Accordion>
+      )}
+
 
       {isLoading && (
         <div className="flex flex-col items-center justify-center text-center space-y-4 py-12">

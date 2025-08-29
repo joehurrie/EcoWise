@@ -15,6 +15,7 @@ export default function ScanPage() {
   );
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [isActivating, setIsActivating] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,7 +35,7 @@ export default function ScanPage() {
     setIsActivating(true);
     setCapturedImage(null);
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
@@ -64,6 +65,7 @@ export default function ScanPage() {
 
   const handleCapture = () => {
     if (videoRef.current && canvasRef.current) {
+      setIsProcessing(true);
       const video = videoRef.current;
       const canvas = canvasRef.current;
       canvas.width = video.videoWidth;
@@ -80,6 +82,7 @@ export default function ScanPage() {
             title: 'Capture Failed',
             description: 'Could not get image from camera.',
         });
+        setIsProcessing(false);
       }
     }
   };
@@ -112,7 +115,7 @@ export default function ScanPage() {
               isCameraActive ? 'bg-black' : 'bg-muted'
             )}
           >
-            {!isCameraActive && (
+            {!isCameraActive && !capturedImage && (
               <div className="text-center p-8">
                 <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Scan Barcode</h3>
@@ -135,6 +138,9 @@ export default function ScanPage() {
                 </Button>
               </div>
             )}
+             {capturedImage && !isProcessing && (
+              <img src={capturedImage} alt="Captured product" className="w-full h-full object-cover" />
+            )}
 
             <video
               ref={videoRef}
@@ -148,18 +154,28 @@ export default function ScanPage() {
             />
 
             {isCameraActive && hasCameraPermission && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40">
-                <div className="w-3/4 max-w-md h-28 border-4 border-white/80 rounded-lg pointer-events-none" />
-                <p className="text-white font-medium mt-2 pointer-events-none">
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-4">
+                <div className="w-3/4 max-w-md h-28 border-4 border-white/80 rounded-lg pointer-events-none flex-shrink-0" />
+                <p className="text-white font-medium mt-4 pointer-events-none flex-1">
                   Position barcode inside the frame
                 </p>
                 <Button
                     size="lg"
-                    className="absolute bottom-6 bg-white/80 text-black hover:bg-white"
+                    className="bg-white/80 text-black hover:bg-white"
                     onClick={handleCapture}
+                    disabled={isProcessing}
                 >
-                    <Aperture className="mr-2" />
-                    Capture & Analyze
+                    {isProcessing ? (
+                        <>
+                            <Loader2 className="mr-2 animate-spin" />
+                            Analyzing...
+                        </>
+                    ) : (
+                        <>
+                            <Aperture className="mr-2" />
+                            Capture & Analyze
+                        </>
+                    )}
                 </Button>
               </div>
             )}
@@ -184,7 +200,7 @@ export default function ScanPage() {
 
 
         <div className="mt-8">
-          <ProductAnalysisForm capturedImage={capturedImage} />
+          <ProductAnalysisForm capturedImage={capturedImage} onAnalysisComplete={() => setIsProcessing(false)} />
         </div>
       </div>
     </div>
