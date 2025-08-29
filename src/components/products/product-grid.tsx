@@ -145,9 +145,6 @@ const ProductCard = ({ product }: { product: any }) => (
         <Link href={`/products/${product.id}`} className="block">
             <div className="relative">
                 <Image src={product.image} alt={product.name} width={400} height={400} className="w-full h-48 object-cover" />
-                <div className="quick-view-overlay absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                    <Button variant="secondary">Quick View</Button>
-                </div>
             </div>
         </Link>
         <div className="p-4">
