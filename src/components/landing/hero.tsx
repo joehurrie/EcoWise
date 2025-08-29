@@ -10,7 +10,7 @@ export function Hero() {
       <div className="container mx-auto flex flex-col md:flex-row items-center">
         <div className="md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
           <h2 className="font-headline text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Make climate-conscious choices in your everyday shopping
+            eco-friendly choices in your everyday shopping
           </h2>
           <p className="text-lg mb-8">
             Scan products to view sustainability scores, discover eco-friendly alternatives, and track your personal impact.
