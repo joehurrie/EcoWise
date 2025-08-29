@@ -1,3 +1,4 @@
+
 import type { SVGProps } from 'react';
 
 export const IconFacebook = (props: SVGProps<SVGSVGElement>) => (
@@ -26,11 +27,11 @@ export const ArrowsHorizontal = (props: SVGProps<SVGSVGElement>) => (
 );
 
 export const EcoWiseLogo = (props: SVGProps<SVGSVGElement>) => (
-  <svg {...props} width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <svg {...props} viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <path d="M60,100 C40,60 80,40 100,80 C90,110 70,120 60,100 Z" fill="#A8D5BA" />
     <path d="M140,100 C160,60 120,40 100,80 C110,110 130,120 140,100 Z" fill="#2E7D32" />
     <path d="M100,60 C80,100 120,140 100,160 C80,140 120,100 100,60 Z" fill="#4CAF50" />
-    <circle cx="100" cy="100" r="90" fill="none" stroke="#E0E0E0" strokeWidth="2" />
+    <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" strokeWidth="2" />
   </svg>
 );
 
