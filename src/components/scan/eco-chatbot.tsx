@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
+import type { EcoChatbotInput } from '@/types/eco-chatbot';
 import { cn } from '@/lib/utils';
 import { Leaf, Loader2, Send, X } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
@@ -49,12 +50,14 @@ export function EcoChatbot() {
     const userMessage = inputValue.trim();
     if (!userMessage || isLoading) return;
 
+    const newUserMessage: EcoChatbotInput = { message: userMessage };
+
     setMessages((prev) => [...prev, { role: 'user', content: userMessage }]);
     setInputValue('');
     setIsLoading(true);
 
     try {
-      const result = await ecoChatbot({ message: userMessage });
+      const result = await ecoChatbot(newUserMessage);
       setMessages((prev) => [...prev, { role: 'bot', content: result.reply }]);
     } catch (error) {
       console.error('Error with chatbot:', error);
@@ -63,9 +66,6 @@ export function EcoChatbot() {
         title: 'Error',
         description: 'Could not get a response from the chatbot.',
       });
-      setMessages((prev) =>
-        prev.filter((m) => m.content !== 'Thinking...')
-      );
     } finally {
       setIsLoading(false);
     }
