@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { ProductAnalysisForm } from './product-analysis-form';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
+import { EcoChatbot } from '@/components/scan/eco-chatbot';
 
 export default function ScanPage() {
   const [hasCameraPermission, setHasCameraPermission] = useState<boolean | null>(
@@ -94,115 +95,118 @@ export default function ScanPage() {
   }, []);
 
   return (
-    <div className="-m-8">
-      <canvas ref={canvasRef} className="hidden" />
-      <div className="bg-primary p-8 text-primary-foreground">
-        <div className="container mx-auto max-w-3xl">
-          <h1 className="text-4xl font-headline tracking-tight">
-            Analyze a Product's Sustainability
-          </h1>
-          <p className="text-lg text-primary-foreground/80 mt-4">
-            Upload a product's photo for an instant analysis, or use one of the
-            alternative methods below.
-          </p>
-        </div>
-      </div>
-      <div className="container mx-auto max-w-3xl py-12">
-        <Card className="overflow-hidden">
-          <div
-            className={cn(
-              'relative aspect-[4/3] flex items-center justify-center',
-              isCameraActive ? 'bg-black' : 'bg-muted'
-            )}
-          >
-            {!isCameraActive && !capturedImage && (
-              <div className="text-center p-8">
-                <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Scan Product</h3>
-                <p className="text-muted-foreground mb-6">
-                  Position the product's photo or barcode in front of your camera for an
-                  instant sustainability report.
-                </p>
-                <Button
-                  size="lg"
-                  className="bg-accent text-accent-foreground hover:bg-accent/90"
-                  onClick={getCameraPermission}
-                  disabled={isActivating}
-                >
-                  {isActivating ? (
-                    <Loader2 className="mr-2 animate-spin" />
-                  ) : (
-                    <Barcode className="mr-2" />
-                  )}
-                  {isActivating ? 'Starting Camera...' : 'Scan'}
-                </Button>
-              </div>
-            )}
-             {capturedImage && !isProcessing && (
-              <img src={capturedImage} alt="Captured product" className="w-full h-full object-cover" />
-            )}
-
-            <video
-              ref={videoRef}
-              className={cn(
-                'w-full h-full object-cover',
-                !isCameraActive && 'hidden'
-              )}
-              autoPlay
-              muted
-              playsInline
-            />
-
-            {isCameraActive && hasCameraPermission && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-4">
-                <div className="w-3/4 max-w-md h-28 border-4 border-white/80 rounded-lg pointer-events-none flex-shrink-0" />
-                <p className="text-white font-medium mt-4 pointer-events-none flex-1">
-                  Position image inside the frame
-                </p>
-                <Button
-                    size="lg"
-                    className="bg-white/80 text-black hover:bg-white"
-                    onClick={handleCapture}
-                    disabled={isProcessing}
-                >
-                    {isProcessing ? (
-                        <>
-                            <Loader2 className="mr-2 animate-spin" />
-                            Analyzing...
-                        </>
-                    ) : (
-                        <>
-                            <Aperture className="mr-2" />
-                            Submit
-                        </>
-                    )}
-                </Button>
-              </div>
-            )}
-            
-            {hasCameraPermission === false && !isCameraActive && (
-                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted">
-                    <CameraOff className="w-16 h-16 text-muted-foreground" />
-                    <p className="mt-4 text-muted-foreground">Camera access is required for barcode scanning.</p>
-                </div>
-            )}
+    <>
+      <div className="-m-8">
+        <canvas ref={canvasRef} className="hidden" />
+        <div className="bg-primary p-8 text-primary-foreground">
+          <div className="container mx-auto max-w-3xl">
+            <h1 className="text-4xl font-headline tracking-tight">
+              Analyze a Product's Sustainability
+            </h1>
+            <p className="text-lg text-primary-foreground/80 mt-4">
+              Upload a product's photo for an instant analysis, or use one of the
+              alternative methods below.
+            </p>
           </div>
-        </Card>
+        </div>
+        <div className="container mx-auto max-w-3xl py-12">
+          <Card className="overflow-hidden">
+            <div
+              className={cn(
+                'relative aspect-[4/3] flex items-center justify-center',
+                isCameraActive ? 'bg-black' : 'bg-muted'
+              )}
+            >
+              {!isCameraActive && !capturedImage && (
+                <div className="text-center p-8">
+                  <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">Scan Product</h3>
+                  <p className="text-muted-foreground mb-6">
+                    Position the product's photo or barcode in front of your camera for an
+                    instant sustainability report.
+                  </p>
+                  <Button
+                    size="lg"
+                    className="bg-accent text-accent-foreground hover:bg-accent/90"
+                    onClick={getCameraPermission}
+                    disabled={isActivating}
+                  >
+                    {isActivating ? (
+                      <Loader2 className="mr-2 animate-spin" />
+                    ) : (
+                      <Barcode className="mr-2" />
+                    )}
+                    {isActivating ? 'Starting Camera...' : 'Scan'}
+                  </Button>
+                </div>
+              )}
+               {capturedImage && !isProcessing && (
+                <img src={capturedImage} alt="Captured product" className="w-full h-full object-cover" />
+              )}
 
-        {hasCameraPermission === false && (
-            <Alert variant="destructive" className="mt-6">
-                <AlertTitle>Camera Access Denied</AlertTitle>
-                <AlertDescription>
-                You have denied camera access. To use the barcode scanner, please enable camera permissions in your browser settings and refresh the page.
-                </AlertDescription>
-            </Alert>
-        )}
+              <video
+                ref={videoRef}
+                className={cn(
+                  'w-full h-full object-cover',
+                  !isCameraActive && 'hidden'
+                )}
+                autoPlay
+                muted
+                playsInline
+              />
+
+              {isCameraActive && hasCameraPermission && (
+                <div className="absolute inset-0 flex flex-col items-center justify-between bg-black/40 p-4">
+                  <div className="w-3/4 max-w-md h-28 border-4 border-white/80 rounded-lg pointer-events-none flex-shrink-0" />
+                  <p className="text-white font-medium text-center pointer-events-none flex-1 mt-4">
+                    Position image inside the frame
+                  </p>
+                  <Button
+                      size="lg"
+                      className="bg-white/80 text-black hover:bg-white"
+                      onClick={handleCapture}
+                      disabled={isProcessing}
+                  >
+                      {isProcessing ? (
+                          <>
+                              <Loader2 className="mr-2 animate-spin" />
+                              Analyzing...
+                          </>
+                      ) : (
+                          <>
+                              <Aperture className="mr-2" />
+                              Submit
+                          </>
+                      )}
+                  </Button>
+                </div>
+              )}
+              
+              {hasCameraPermission === false && !isCameraActive && (
+                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted">
+                      <CameraOff className="w-16 h-16 text-muted-foreground" />
+                      <p className="mt-4 text-muted-foreground">Camera access is required for barcode scanning.</p>
+                  </div>
+              )}
+            </div>
+          </Card>
+
+          {hasCameraPermission === false && (
+              <Alert variant="destructive" className="mt-6">
+                  <AlertTitle>Camera Access Denied</AlertTitle>
+                  <AlertDescription>
+                  You have denied camera access. To use the barcode scanner, please enable camera permissions in your browser settings and refresh the page.
+                  </AlertDescription>
+              </Alert>
+          )}
 
 
-        <div className="mt-8">
-          <ProductAnalysisForm capturedImage={capturedImage} onAnalysisComplete={() => setIsProcessing(false)} />
+          <div className="mt-8">
+            <ProductAnalysisForm capturedImage={capturedImage} onAnalysisComplete={() => setIsProcessing(false)} />
+          </div>
         </div>
       </div>
-    </div>
+      <EcoChatbot />
+    </>
   );
 }
