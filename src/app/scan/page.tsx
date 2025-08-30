@@ -120,7 +120,7 @@ export default function ScanPage() {
               {!isCameraActive && !capturedImage && (
                 <div className="text-center p-8">
                   <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Scan Product</h3>
+                  <h3 className="text-xl font-semibold mb-2">Take A Photo</h3>
                   <p className="text-muted-foreground mb-6">
                     Position the product's photo or barcode in front of your camera for an
                     instant sustainability report.
