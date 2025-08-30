@@ -32,7 +32,7 @@ export function SustainabilityReportCard({ report }: SustainabilityReportCardPro
       <CardHeader>
         <CardTitle className='font-headline text-2xl'>Sustainability Report: {productName}</CardTitle>
         <CardDescription>
-          This AI-generated report estimates the product's environmental and ethical impact.
+          This report estimates the product's environmental and ethical impact.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

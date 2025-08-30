@@ -19,7 +19,7 @@ export type GenerateSustainabilityReportInput = z.infer<typeof GenerateSustainab
 
 const GenerateSustainabilityReportOutputSchema = z.object({
   productName: z.string().describe('The name of the product being reported on.'),
-  summary: z.string().describe('A brief, one-paragraph summary of the sustainability findings.'),
+  summary: z.string().describe('A brief, 30 words max-paragraph summary of the sustainability findings.'),
   sustainabilityScore: z.number().min(0).max(100).describe('An overall sustainability score from 0 to 100, where 100 is excellent.'),
   report: z.object({
     co2Emissions: z.object({

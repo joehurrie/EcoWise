@@ -102,7 +102,7 @@ export default function ScanPage() {
             Analyze a Product's Sustainability
           </h1>
           <p className="text-lg text-primary-foreground/80 mt-4">
-            Scan a product's barcode for an instant analysis, or use one of the
+            Upload a product's photo for an instant analysis, or use one of the
             alternative methods below.
           </p>
         </div>
@@ -118,9 +118,9 @@ export default function ScanPage() {
             {!isCameraActive && !capturedImage && (
               <div className="text-center p-8">
                 <Camera className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Scan Barcode</h3>
+                <h3 className="text-xl font-semibold mb-2">Scan Product</h3>
                 <p className="text-muted-foreground mb-6">
-                  Position the product's barcode in front of your camera for an
+                  Position the product's photo or barcode in front of your camera for an
                   instant sustainability report.
                 </p>
                 <Button
@@ -134,7 +134,7 @@ export default function ScanPage() {
                   ) : (
                     <Barcode className="mr-2" />
                   )}
-                  {isActivating ? 'Starting Camera...' : 'Scan Barcode'}
+                  {isActivating ? 'Starting Camera...' : 'Scan'}
                 </Button>
               </div>
             )}
@@ -157,7 +157,7 @@ export default function ScanPage() {
               <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 p-4">
                 <div className="w-3/4 max-w-md h-28 border-4 border-white/80 rounded-lg pointer-events-none flex-shrink-0" />
                 <p className="text-white font-medium mt-4 pointer-events-none flex-1">
-                  Position barcode inside the frame
+                  Position image inside the frame
                 </p>
                 <Button
                     size="lg"
@@ -173,7 +173,7 @@ export default function ScanPage() {
                     ) : (
                         <>
                             <Aperture className="mr-2" />
-                            Capture & Analyze
+                            Submit
                         </>
                     )}
                 </Button>

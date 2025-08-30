@@ -1,6 +1,6 @@
 const stats = [
   { value: '14K+', label: 'Products in our database' },
-  { value: '5.2M', label: 'Plastic waste avoided' },
+  { value: '520 tCO2e', label: 'Carbon Emmission Saved' },
   { value: '87K+', label: 'Community members' },
 ];
 
