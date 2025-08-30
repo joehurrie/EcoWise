@@ -1,3 +1,4 @@
+
 'use client';
 
 import { ecoChatbot } from '@/ai/flows/eco-chatbot';
@@ -74,7 +75,7 @@ export function EcoChatbot() {
   if (!isOpen) {
     return (
       <Button
-        className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-primary shadow-lg hover:bg-primary/90"
+        className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-primary shadow-lg hover:bg-primary/90 animate-pulse"
         onClick={() => setIsOpen(true)}
         title="Chat with EcoBot"
       >
